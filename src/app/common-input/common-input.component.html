@@ -1,0 +1,34 @@
+
+
+<div>
+    <form [formGroup]="registraionForm" (submit)="onSubmit()" >
+
+        <div  >
+            <input type="text" formControlName="firstName" placeholder="FirstName" >
+        </div>
+        <div  >
+            <input type="text" formControlName="lastName" placeholder="LastName" >
+        </div>
+        <div formGroupName="education">
+           
+              <input type="text" formControlName="subject" placeholder="subject">
+       
+        
+              <input type="text" formControlName="rollNo" placeholder="rollNo">
+            
+          </div>
+        <div>
+            <div formArrayName="hobbies">
+                <button type="button" (click)="addHobbies()" disabled="hobbies.valid">+ Add hobby</button>
+                
+
+                <div *ngFor="let hobby of hobbies.controls; let i=index">
+                 
+                  <input id="hobby-{{ i }}" type="text" [formControlName]="i" placeholder="hobby-{{ i+1 }}">
+                  <button type="button" (click)="removeHobbies(i)" *ngIf="hobbies.length >1" >- Remove hobby</button>
+                </div>
+            </div>
+            <button type="submit" > Submit</button>
+        </div>
+    </form>
+</div>
